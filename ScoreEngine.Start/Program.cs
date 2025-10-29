@@ -18,16 +18,21 @@ namespace ScoreEngine
             var container = ScoreEngineContainer.BuildContainer();
 
             // Read Data
+            Console.WriteLine("Read data from source...");
             var repository = container.Resolve<IDataRepository>();
             var data = repository.ReadData(PathToFileDefault);
 
             // Calculate Scores
+            Console.WriteLine("Calculate scores...");
             var calculateService = container.Resolve<ICaclulatorService>();
             var scores = calculateService.RunCalculation(data);
 
             // Output Results
+            Console.WriteLine("Write calculated scores in destination place...");
             var outputService = container.Resolve<IOutputService<SitterVisitScores>>();
             outputService.OutputResults(scores, OutputFileDefault);
+
+            Console.WriteLine("Finished...");
         }
     }
 }

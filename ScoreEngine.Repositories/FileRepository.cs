@@ -1,6 +1,6 @@
-﻿using ScoreEngine.Contracts.Enums;
-using ScoreEngine.Contracts.Repository;
+﻿using ScoreEngine.Contracts.Repository;
 using ScoreEngine.Domain;
+using ScoreEngine.Repositories.Enums;
 
 namespace ScoreEngine.Repositories
 {

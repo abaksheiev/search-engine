@@ -19,32 +19,30 @@ namespace ScoreEngine.Repositories
 
             var data = new List<Review>();
 
-            using (StreamReader ReaderObject = new StreamReader(filePath))
+            var lines = File.ReadLines(filePath);
+
+            var isHeaderPassed = false;
+            foreach (var line in lines)
             {
-                int headerLine = 0;
-                string Line;
-                while ((Line = ReaderObject.ReadLine()) != null)
+                // Skip header line
+                if (!isHeaderPassed)
                 {
-                    // Skip header line
-                    if (headerLine == 0)
-                    { 
-                        headerLine++;
-                        continue;
-                    }
-
-                    var parts = Line.Split(_delimiter, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-
-                    var singleReview = new Review(parts[Columns.Rating], parts[Columns.Text], parts[Columns.ResponseTimeMinutes])
-                        .AddDates(parts[Columns.StartDate], parts[Columns.EndDate])
-                        .AddOwener(parts[Columns.Owner], parts[Columns.OwnerEmail], parts[Columns.OwnerPhoneNumber], parts[Columns.OwnerImage])
-                        .AddSitter(parts[Columns.Sitter], parts[Columns.SitterEmail], parts[Columns.SitterPhoneNumber], parts[Columns.SitterImage])
-                        .AddDogNames(parts[Columns.Dogs])
-                        ;
-                    
-                    data.Add(singleReview);
+                    isHeaderPassed = true;
+                    continue;
                 }
-            }
 
+                var parts = line.Split(_delimiter, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+                var singleReview = new Review(parts[Columns.Rating], parts[Columns.Text], parts[Columns.ResponseTimeMinutes])
+                    .AddDates(parts[Columns.StartDate], parts[Columns.EndDate])
+                    .AddOwener(parts[Columns.Owner], parts[Columns.OwnerEmail], parts[Columns.OwnerPhoneNumber], parts[Columns.OwnerImage])
+                    .AddSitter(parts[Columns.Sitter], parts[Columns.SitterEmail], parts[Columns.SitterPhoneNumber], parts[Columns.SitterImage])
+                    .AddDogNames(parts[Columns.Dogs])
+                    ;
+
+                data.Add(singleReview);
+            }
+           
             return data;
         }
     }

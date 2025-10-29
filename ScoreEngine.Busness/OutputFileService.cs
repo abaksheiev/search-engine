@@ -18,11 +18,16 @@ namespace ScoreEngine.Busness
 
         public void OutputResults(List<SitterVisitScores> data, string pathToFile)
         {
+            var sortedData = data
+                .OrderByDescending(d => d.SearchScore)
+                .ThenBy(d => d.SitterName)
+                .ToList();
+
             using (StreamWriter outputFile = new(pathToFile))
             {
                 WriteHeader(outputFile);
 
-                WriteData(data.OrderByDescending(d => d.SitterName).ToList(), outputFile);
+                WriteData(sortedData, outputFile);
             }
         }
 
@@ -37,8 +42,7 @@ namespace ScoreEngine.Busness
                         Round(d.ProfileScore),
                         Round(d.RatingsScore),
                         Round(d.SearchScore),
-
-                        ]
+                    ]
                 );
 
                 outputFile.WriteLine(str);

@@ -2,15 +2,17 @@
 
 public class Review
 {
+    private List<Dog> _dog = new List<Dog>();
+
     public int Rating { get; private set; }
-    
+
     public string Text { get; private set; }
     
-    public List<string> DogNames { get; private set; } = new();
+    public IReadOnlyList<Dog> Dog => _dog.AsReadOnly();
 
-    public PersonModel Sitter { get; private set; }
+    public Person Sitter { get; private set; }
 
-    public PersonModel Owner { get; private set; }
+    public Person Owner { get; private set; }
 
     public DateTime StartDate { get; private set; }
     
@@ -35,14 +37,14 @@ public class Review
 
     public Review AddOwener(string name, string email, string phoneNumber, string image)
     {
-        this.Owner = new PersonModel(name, email, phoneNumber, image);
+        this.Owner = new Person(name, email, phoneNumber, image);
 
         return this;
     }
 
     public Review AddSitter(string name, string email, string phoneNumber, string image)
     {
-        this.Sitter = new PersonModel(name, email, phoneNumber, image);
+        this.Sitter = new Person(name, email, phoneNumber, image);
 
         return this;
     }
@@ -77,7 +79,13 @@ public class Review
             throw new ArgumentException("Dog names cannot be null or empty", nameof(dogNames));
         }
 
-        this.DogNames.AddRange(dogNames.Split('|'));
+        var dogNameList = dogNames.Split('|');
+
+        foreach (var dogName in dogNameList)
+        {
+            this._dog.Add(new Dog(dogName));
+        }
+     
         return this;
     }
 }

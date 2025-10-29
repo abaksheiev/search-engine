@@ -8,7 +8,7 @@ public class ProfileService : IProfileService
     private const double Koeficient = 5d;
     private const int TotalEnglishLetters = 26;
 
-    public double CalculateProfileScore(PersonModel person)
+    public double CalculateProfileScore(Person person)
     {
         var letters = new HashSet<char>();
         foreach (var c in person.Name)

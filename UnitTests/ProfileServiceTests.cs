@@ -19,7 +19,7 @@ namespace UnitTests
         [InlineData("AliceAliceAlice", 0.961538461538461)]
         public void WhenPersonHasDublicatedChar_ThanResult_ShouldNotChanged(string name, double expectedValue)
         {
-            var person = new ScoreEngine.Domain.PersonModel(name, "email", "phone", "image");
+            var person = new ScoreEngine.Domain.Person(name, "email", "phone", "image");
 
             var score = _profileService.CalculateProfileScore(person);
             Assert.Equal(Math.Round(expectedValue,2), Math.Round( score,2));

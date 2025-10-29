@@ -39,7 +39,7 @@ namespace UnitTests
 
             var score = _caclulatorService.RunCalculation(data);
 
-            _profileServiceMock.Verify(ps => ps.CalculateProfileScore(It.IsAny<PersonModel>()), Times.Exactly(countOfReviews));
+            _profileServiceMock.Verify(ps => ps.CalculateProfileScore(It.IsAny<Person>()), Times.Exactly(countOfReviews));
             _ratingServiceMock.Verify(rs => rs.CalculateRatingsScore(It.IsAny<List<Review>>()), Times.Exactly(countOfReviews));    
             _searchServiceMock.Verify(ss => ss.CalculateSearchScore(It.IsAny<double>(), It.IsAny<double>(), It.IsAny<int>()), Times.Exactly(countOfReviews));
         }

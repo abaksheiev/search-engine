@@ -1,6 +1,6 @@
 ﻿namespace ScoreEngine.Domain;
 
-public class PersonModel
+public class Person
 {
     public string Name { get; private set; }
     public string Email { get; private set; }
@@ -8,7 +8,7 @@ public class PersonModel
     public string Image { get; private set; }
     public string Identificator => $"{Email}-{PhoneNumber}";
 
-    public PersonModel(string name, string email, string phoneNumber, string image)
+    public Person(string name, string email, string phoneNumber, string image)
     {
 
         if (string.IsNullOrWhiteSpace(name))

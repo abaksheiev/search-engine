@@ -9,7 +9,7 @@ to push calculation regular one and manual by request.
 > Would needed to create event message system, all new data(reviews) after coming in system push(Publisher) a event in queue for calculation. Cron job(Consumer) take message and procced all calculation. 
 Calculations are procced in containers with horisontall scalling. Running all calculations could be done in low loading system time(for ex. at night)
 - Manual by request: 
-> User could make request to update their scores and score must update imidiatly, but system must have limitation for interval in order to abvoi spam requests.
+> User could make request to update their scores and score must be updated immediatly, but system must have limitation for interval in order to abvoi spam requests. Also could be done via message Publisher/Consumer.
 
 Storing data in relatain database, as it is needed relation with user.
 

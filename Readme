@@ -1,0 +1,5 @@
+docker build -t search-engine:v1 .
+
+docker run -d --name search-engine search-engine:v1
+
+docker run --rm -it --user root search-engine:v1 bash

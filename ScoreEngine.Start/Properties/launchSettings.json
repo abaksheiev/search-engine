@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ScoreEngine.Start": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

@@ -50,6 +50,6 @@
 
     ``./ScoreEngine.Start``
 
-- [x] In Data folder should apear filr sitters.csv
+- [x] In Data folder will be created file sitters.csv
 
     ![alt text](_content/result.png)
